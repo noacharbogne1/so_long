@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 10:08:51 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:45:01 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,19 @@ t_buff	*create_list(void)
 	return (lst);
 }
 
-char	*get_map(int fd)
+char	**get_map(int fd)
 {
 	t_buff	*lst;
 	t_buff	*new_node;
 	t_buff	*tmp;
 	char	*str;
+	char	**map;
 	int		count;
 	int		i;
 
 	count = 0;
 	i = 0;
+	map = NULL;
 	lst = create_list();
 	new_node = create_list();
 	while (1)
@@ -61,23 +63,56 @@ char	*get_map(int fd)
 	}
 	free(new_node);
 	ft_lstclear(&tmp);
-	return (str);
+	map = ft_split(str, '\n');
+	free(str);
+	return (map);
+}
+
+int	check_map(char **map)
+{
+	if (!check_map_len(map))
+		return (0);
+	if (!check_elems(map))
+		return (0);
+	if (!check_walls(map))
+		return (0);
+	return (1);
+}
+
+void	ft_free_map(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	while (i--)
+		free(tab[i]);
+	free(tab);
 }
 
 #include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	char	*str;
+	char	**map;
+	int		i;
 	int		fd;
 
-	str = NULL;
+	map = NULL;
+	i = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		str = get_map(fd);
-		printf("%s", str);
-		free(str);
+		if (fd >= 1024 || fd < 0)
+			return (0);
+		map = get_map(fd);
 		close(fd);
+		if (!check_map(map))
+		{
+			ft_free_map(map);
+			return (0);
+		}
+		ft_free_map(map);
 	}
 }
