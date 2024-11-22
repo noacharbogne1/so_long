@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 12:45:01 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:25:08 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,16 @@ char	**get_map(int fd)
 
 int	check_map(char **map)
 {
+	int	lines;
+
+	lines = 0;
 	if (!check_map_len(map))
 		return (0);
-	if (!check_elems(map))
+	lines = check_map_len(map);
+	printf("%d", check_walls(map, lines));
+	if (!check_walls(map, lines))
 		return (0);
-	if (!check_walls(map))
+	if (!check_elems(map))
 		return (0);
 	return (1);
 }

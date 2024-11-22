@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 13:04:56 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:34:37 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,6 @@
 #  define BUFFER_SIZE 2
 # endif
 
-typedef	struct s_pos
-{
-	int	i;
-	int	j;
-	int	i_len;
-	int	j_len;
-}	t_pos;
-
 typedef struct s_buff
 {
 	struct s_buff	*next;
@@ -40,13 +32,13 @@ char	**get_map(int fd);
 void	ft_lstadd_back(t_buff **lst, t_buff *new);
 void	ft_lstclear(t_buff **lst);
 t_buff	*ft_lstlast(t_buff *lst);
-size_t	ft_strlen(const char *s);
+int	ft_strlen(const char *s);
 char	*ft_strcpy(char *dest, char *src, int i);
 void	*ft_memset(void *s, int c, size_t n);
 char	**ft_split(char const *s, char c);
 void	ft_free_map(char **tab);
 int		check_elems(char **map);
 int		check_map_len(char **map);
-int		check_walls(char **map);
+int		check_walls(char **map, int lines);
 
 #endif

@@ -6,15 +6,15 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:27:23 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 10:30:37 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:34:33 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
