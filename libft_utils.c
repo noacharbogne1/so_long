@@ -6,22 +6,22 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:50:26 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/21 17:52:39 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:07:04 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_strcnpy(char *dest, char *src, int len)
+char	*ft_strcpy(char *dest, char *src, int i)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (src[i] != '\0' || len > 0)
+	j = 0;
+	while (src[j] != '\0')
 	{
-		dest[i] = src[i];
+		dest[i] = src[j];
+		j++;
 		i++;
-		len--;
 	}
 	dest[i] = '\0';
 	return (dest);
@@ -62,6 +62,7 @@ void	ft_lstclear(t_buff **lst)
 		free(*lst);
 		*lst = temp;
 	}
+	free(temp);
 }
 
 void	ft_lstadd_back(t_buff **lst, t_buff *new)
@@ -79,4 +80,18 @@ void	ft_lstadd_back(t_buff **lst, t_buff *new)
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new;
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*adress;
+
+	adress = (unsigned char *)s;
+	while (n > 0)
+	{
+		*adress = c;
+		adress++;
+		n--;
+	}
+	return (s);
 }

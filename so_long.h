@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/21 17:50:41 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:05:14 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_lstadd_back(t_buff **lst, t_buff *new);
 void	ft_lstclear(t_buff **lst);
 t_buff	*ft_lstlast(t_buff *lst);
 size_t	ft_strlen(const char *s);
-char	*ft_strcnpy(char *dest, char *src, int len);
+char	*ft_strcpy(char *dest, char *src, int i);
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif
