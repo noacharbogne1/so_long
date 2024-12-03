@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 11:25:28 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:50:48 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_elems
 
 typedef	struct s_pos
 {
-	int	x;
 	int	y;
+	int	x;
 }	t_pos;
 
 // Libft
@@ -59,5 +59,6 @@ int		check_map_len(char **map);
 int		check_walls(char **map, int lines);
 t_pos	get_pos_p(char **map);
 int		access_elems(char **map, t_pos size, t_pos p);
+void	flood_fill(char	**tmp, t_pos size, t_pos current, char to_fill);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 11:28:35 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:12:53 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	check_map_len(char **map)
 			return (0);
 		i++;
 	}
-	if (len == i)
-		return (0);
 	return (i);
 }
 
@@ -100,8 +98,8 @@ t_pos	get_pos_p(char **map)
 		{
 			if (map[i][j] == 'P')
 			{
-				pos.x = i;
-				pos.y = j;
+				pos.x = j;
+				pos.y = i;
 			}
 			j++;
 		}
@@ -111,9 +109,15 @@ t_pos	get_pos_p(char **map)
 	return (pos);
 }
 
-void	flood_fill(char	**tmp, t_pos size, t_pos p)
+void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill)
 {
-
+	if (cur.x < 0 || cur.y < 0 || tmp[cur.y][cur.x] == to_fill)
+		return ;
+	tmp[cur.y][cur.x] = '1';
+	flood_fill(tmp, size, (t_pos){cur.y + 1, cur.x}, to_fill);
+	flood_fill(tmp, size, (t_pos){cur.y - 1, cur.x}, to_fill);
+	flood_fill(tmp, size, (t_pos){cur.y, cur.x + 1}, to_fill);
+	flood_fill(tmp, size, (t_pos){cur.y, cur.x - 1}, to_fill);
 }
 
 int	access_elems(char **map, t_pos size, t_pos p)
@@ -125,7 +129,7 @@ int	access_elems(char **map, t_pos size, t_pos p)
 	i = 0;
 	j = 0;
 	tmp = map;
-	flood_fill(tmp, size, p, 1);
+	flood_fill(tmp, size, p, '1');
 	while (tmp[i])
 	{
 		while (tmp[i][j])
@@ -137,6 +141,5 @@ int	access_elems(char **map, t_pos size, t_pos p)
 		i++;
 		j = 0;
 	}
-	free(tmp);
 	return (1);
 }

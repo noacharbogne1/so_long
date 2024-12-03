@@ -6,11 +6,39 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 11:25:24 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:48:32 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
+
+int	check_argv(char *str)
+{
+	int		i;
+	int		j;
+	char	*ber;
+
+	i = 0;
+	j = 0;
+	ber = ".ber";
+	while (str[i])
+		i++;
+	if (i == 4)
+		return (0);
+	i = i - 4;
+	while (str[i])
+	{
+		while (str[i + j] == ber[j])
+		{
+			j++;
+			if (ber[j] == '\0')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 char	**get_map(int fd)
 {
@@ -48,6 +76,15 @@ char	**get_map(int fd)
 		i = ft_strlen(str);
 		lst = lst->next;
 	}
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && str[i] == '\n')
+			return (0);
+		if (str[i] == '\n' && str[i + 1] == '\n')
+			return (0);
+		i++;
+	}
 	free(new_node);
 	ft_lstclear(&tmp);
 	map = ft_split(str, '\n');
@@ -75,7 +112,7 @@ int	check_map(char **map)
 	while (map[0][j])
 		j++;
 	size.x = j;
-	if (size.y > 30 || size.x > 60)
+	if (size.y > 30 || size.x > 60) // à vérifier
 		return (0);
 	if (!access_elems(map, size, p))
 		return (0);
@@ -94,8 +131,6 @@ void	ft_free_map(char **tab)
 	free(tab);
 }
 
-#include <stdio.h>
-
 int	main(int argc, char **argv)
 {
 	char	**map;
@@ -106,10 +141,14 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc == 2)
 	{
+		if (!check_argv(argv[1]))
+			return (0);
 		fd = open(argv[1], O_RDONLY);
 		if (fd >= 1024 || fd < 0)
 			return (0);
 		map = get_map(fd);
+		if (!map)
+			return (0);
 		close(fd);
 		if (!check_map(map))
 		{
