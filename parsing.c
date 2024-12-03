@@ -6,24 +6,11 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 16:25:08 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 11:25:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
-
-t_buff	*create_list(void)
-{
-	t_buff	*lst;
-
-	lst = malloc(sizeof(t_buff));
-	if (!lst)
-		return (NULL);
-	lst->next = NULL;
-	ft_memset(lst->buffer, 0, sizeof(lst->buffer));
-	return (lst);
-}
 
 char	**get_map(int fd)
 {
@@ -70,16 +57,27 @@ char	**get_map(int fd)
 
 int	check_map(char **map)
 {
-	int	lines;
+	int		j;
+	t_elems	elems;
+	t_pos	size;
+	t_pos	p;
 
-	lines = 0;
+	j = 0;
 	if (!check_map_len(map))
 		return (0);
-	lines = check_map_len(map);
-	printf("%d", check_walls(map, lines));
-	if (!check_walls(map, lines))
+	size.y = check_map_len(map);
+	if (!check_walls(map, size.y))
 		return (0);
-	if (!check_elems(map))
+	elems = create_elems();
+	if (!check_elems(map, elems))
+		return (0);
+	p = get_pos_p(map);
+	while (map[0][j])
+		j++;
+	size.x = j;
+	if (size.y > 30 || size.x > 60)
+		return (0);
+	if (!access_elems(map, size, p))
 		return (0);
 	return (1);
 }

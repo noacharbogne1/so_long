@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/11/22 16:34:37 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 11:25:28 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,37 @@ typedef struct s_buff
 	char			buffer[BUFFER_SIZE + 2];
 }	t_buff;
 
-t_buff	*create_list(void);
-char	**get_map(int fd);
+typedef struct s_elems
+{
+	int	c;
+	int	p;
+	int	e;
+}	t_elems;
+
+typedef	struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+// Libft
 void	ft_lstadd_back(t_buff **lst, t_buff *new);
 void	ft_lstclear(t_buff **lst);
 t_buff	*ft_lstlast(t_buff *lst);
-int	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 char	*ft_strcpy(char *dest, char *src, int i);
 void	*ft_memset(void *s, int c, size_t n);
 char	**ft_split(char const *s, char c);
+
+// parsing.c
+t_buff	*create_list(void);
+char	**get_map(int fd);
 void	ft_free_map(char **tab);
-int		check_elems(char **map);
+t_elems	create_elems(void);
+int		check_elems(char **map, t_elems elems);
 int		check_map_len(char **map);
 int		check_walls(char **map, int lines);
+t_pos	get_pos_p(char **map);
+int		access_elems(char **map, t_pos size, t_pos p);
 
 #endif
