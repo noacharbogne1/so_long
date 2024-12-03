@@ -6,20 +6,25 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 13:50:48 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:38:42 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+#include "minilibx-linux/mlx.h"
+#include <X11/keysym.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
-# endif
+# define ARGV "The map is not a correct .ber"
+# define 
+
+# define BUFFER_SIZE 2
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
 
 typedef struct s_buff
 {
@@ -60,5 +65,7 @@ int		check_walls(char **map, int lines);
 t_pos	get_pos_p(char **map);
 int		access_elems(char **map, t_pos size, t_pos p);
 void	flood_fill(char	**tmp, t_pos size, t_pos current, char to_fill);
+void	window(void);
+void	errors(char *msg);
 
 #endif

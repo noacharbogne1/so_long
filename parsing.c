@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 15:02:54 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:38:37 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_argv(char *str)
 	while (str[i])
 		i++;
 	if (i == 4)
-		return (0);
+		errors (ARGV);
 	i = i - 4;
 	while (str[i])
 	{
@@ -37,7 +37,7 @@ int	check_argv(char *str)
 		}
 		i++;
 	}
-	return (0);
+	errors(ARGV);
 }
 
 char	**get_map(int fd)
