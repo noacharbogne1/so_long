@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 14:48:32 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:02:54 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,19 @@ char	**get_map(int fd)
 	while (str[i])
 	{
 		if (i == 0 && str[i] == '\n')
+		{
+			free(str);
+			ft_lstclear(&tmp);
+			free(new_node);
 			return (0);
+		}
 		if (str[i] == '\n' && str[i + 1] == '\n')
+		{
+			free(str);
+			ft_lstclear(&tmp);
+			free(new_node);
 			return (0);
+		}
 		i++;
 	}
 	free(new_node);
