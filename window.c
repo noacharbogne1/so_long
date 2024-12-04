@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 12:05:17 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:21:33 by noacharbogn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+/*#include "so_long.h"
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -84,4 +84,4 @@ int	main(void)
 	mlx_loop(data.mlx);
 	mlx_destroy_display(data.mlx);
 	free(data.mlx);
-}
+}*/

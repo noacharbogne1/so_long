@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/03 17:38:37 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:43:58 by noacharbogn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,65 @@ int	check_argv(char *str)
 		i++;
 	}
 	errors(ARGV);
+	return (0);
+}
+
+char	*create_str(t_buff *lst, t_buff *new_node, int count)
+{
+	t_buff	*tmp;
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc((count * BUFFER_SIZE + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	tmp = lst;
+	while (lst)
+	{
+		str = ft_strcpy(str, lst->buffer, i);
+		i = ft_strlen(str);
+		lst = lst->next;
+	}
+	check_newline(str, tmp, new_node);
+	return (str);
+}
+void	check_newline(char *str, t_buff *tmp, t_buff *new_node)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && str[i] == '\n')
+		{
+			free(str);
+			ft_lstclear(&tmp);
+			free(new_node);
+			errors(NEWLINE);
+		}
+		if (str[i] == '\n' && str[i + 1] == '\n')
+		{
+			free(str);
+			ft_lstclear(&tmp);
+			free(new_node);
+			errors(NEWLINE);
+		}
+		i++;
+	}
+	free(new_node);
+	ft_lstclear(&tmp);
 }
 
 char	**get_map(int fd)
 {
 	t_buff	*lst;
 	t_buff	*new_node;
-	t_buff	*tmp;
 	char	*str;
 	char	**map;
 	int		count;
-	int		i;
 
 	count = 0;
-	i = 0;
 	map = NULL;
 	lst = create_list();
 	new_node = create_list();
@@ -66,37 +111,7 @@ char	**get_map(int fd)
 			new_node = create_list();
 		}
 	}
-	str = malloc((count * BUFFER_SIZE + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	tmp = lst;
-	while (lst)
-	{
-		str = ft_strcpy(str, lst->buffer, i);
-		i = ft_strlen(str);
-		lst = lst->next;
-	}
-	i = 0;
-	while (str[i])
-	{
-		if (i == 0 && str[i] == '\n')
-		{
-			free(str);
-			ft_lstclear(&tmp);
-			free(new_node);
-			return (0);
-		}
-		if (str[i] == '\n' && str[i + 1] == '\n')
-		{
-			free(str);
-			ft_lstclear(&tmp);
-			free(new_node);
-			return (0);
-		}
-		i++;
-	}
-	free(new_node);
-	ft_lstclear(&tmp);
+	str = create_str(lst, new_node, count);
 	map = ft_split(str, '\n');
 	free(str);
 	return (map);
@@ -144,11 +159,9 @@ void	ft_free_map(char **tab)
 int	main(int argc, char **argv)
 {
 	char	**map;
-	int		i;
 	int		fd;
 
 	map = NULL;
-	i = 0;
 	if (argc == 2)
 	{
 		if (!check_argv(argv[1]))
