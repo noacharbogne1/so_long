@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 11:51:39 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:05:17 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
+int	render_background(void *img, t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < WINDOW_HEIGHT)
+	{
+		while (j < WINDOW_WIDTH)
+			mlx_xpm_file_to_image(data->mlx, PATH_BG, i, j);
+		j = 0;
+		i++;
+	}
+	return (0);
+}
+
 int	render(t_data *data)
 {
 	void	*img;
@@ -29,9 +46,10 @@ int	render(t_data *data)
 	if (data->window != NULL)
 	{
 		img = mlx_xpm_file_to_image(data->mlx, PATH_BG, SQUARE, SQUARE);
+		if (!img)
+			return (0);
 		render_background(data, img);
 	}
-	(void)data;
 	return (0);
 }
 
