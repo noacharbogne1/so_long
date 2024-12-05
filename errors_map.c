@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
+/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 14:26:43 by noacharbogn      ###   ########.fr       */
+/*   Updated: 2024/12/05 08:36:26 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_map_len(char **map)
 	while (map[i])
 	{
 		if (len != ft_strlen(map[i]))
-			errors(LEN);
+			errors(LEN, map);
 		i++;
 	}
 	return (i);
@@ -47,14 +47,14 @@ int	check_elems(char **map, t_elems elems)
 			else if (map[i][j] == 'P' && elems.p < 2)
 				elems.p++;
 			else if (map[i][j] != '0' && map[i][j] != '1')
-				errors(CHAR);
+				errors(CHAR, map);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	if (elems.c < 1 && elems.e != 1 && elems.p != 1)
-		errors(CHAR2);
+	if (elems.c < 1 || elems.e != 1 || elems.p != 1)
+		errors(CHAR2, map);
 	return (1);
 }
 
@@ -74,7 +74,7 @@ int	check_walls(char **map, int lines)
 		while (map[i][j])
 		{
 			if (((i == 0 || i == lines - 1) || (j == 0 || j == len - 1)) && map[i][j] != '1')
-				errors(WALLS);
+				errors(WALLS, map);
 			else
 				j++;
 		}
@@ -135,7 +135,7 @@ int	access_elems(char **map, t_pos size, t_pos p)
 		while (tmp[i][j])
 		{
 			if (tmp[i][j] == 'E' || tmp[i][j] == 'C')
-				errors(ELEMS);
+				errors(ELEMS, map);
 			j++;
 		}
 		i++;

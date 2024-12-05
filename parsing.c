@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
+/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 15:43:58 by noacharbogn      ###   ########.fr       */
+/*   Updated: 2024/12/05 08:39:32 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_argv(char *str)
 	while (str[i])
 		i++;
 	if (i == 4)
-		errors (ARGV);
+		errors (ARGV, NULL);
 	i = i - 4;
 	while (str[i])
 	{
@@ -37,7 +37,7 @@ int	check_argv(char *str)
 		}
 		i++;
 	}
-	errors(ARGV);
+	errors(ARGV, NULL);
 	return (0);
 }
 
@@ -73,14 +73,14 @@ void	check_newline(char *str, t_buff *tmp, t_buff *new_node)
 			free(str);
 			ft_lstclear(&tmp);
 			free(new_node);
-			errors(NEWLINE);
+			errors(NEWLINE, NULL);
 		}
 		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
 			free(str);
 			ft_lstclear(&tmp);
 			free(new_node);
-			errors(NEWLINE);
+			errors(NEWLINE, NULL);
 		}
 		i++;
 	}
@@ -125,22 +125,18 @@ int	check_map(char **map)
 	t_pos	p;
 
 	j = 0;
-	if (!check_map_len(map))
-		return (0);
+	check_map_len(map);
 	size.y = check_map_len(map);
-	if (!check_walls(map, size.y))
-		return (0);
+	check_walls(map, size.y);
 	elems = create_elems();
-	if (!check_elems(map, elems))
-		return (0);
+	check_elems(map, elems);
 	p = get_pos_p(map);
 	while (map[0][j])
 		j++;
 	size.x = j;
 	if (size.y > 30 || size.x > 60) // à vérifier
 		return (0);
-	if (!access_elems(map, size, p))
-		return (0);
+	access_elems(map, size, p);
 	return (1);
 }
 
@@ -164,20 +160,13 @@ int	main(int argc, char **argv)
 	map = NULL;
 	if (argc == 2)
 	{
-		if (!check_argv(argv[1]))
-			return (0);
+		check_argv(argv[1]);
 		fd = open(argv[1], O_RDONLY);
 		if (fd >= 1024 || fd < 0)
 			return (0);
 		map = get_map(fd);
-		if (!map)
-			return (0);
 		close(fd);
-		if (!check_map(map))
-		{
-			ft_free_map(map);
-			return (0);
-		}
+		check_map(map);
 		ft_free_map(map);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
+/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:49:57 by noacharbogn       #+#    #+#             */
-/*   Updated: 2024/12/04 14:14:51 by noacharbogn      ###   ########.fr       */
+/*   Updated: 2024/12/05 09:00:44 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define PATH_C "assets/c.xpm"
 # define PATH_P "assets/p.xpm"
 # define PATH_E "assets/e.xpm"
-# define SQUARE 16
+//# define SQUARE 32
 
 //others
 # define BUFFER_SIZE 2

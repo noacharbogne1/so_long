@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
+/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 15:46:53 by noacharbogn      ###   ########.fr       */
+/*   Updated: 2024/12/05 09:07:07 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include "macros.h"
 #include "ft_printf/ft_printf.h"
-//#include "mlx_linux/mlx.h"
-//#include <X11/X.h>
-//#include <X11/keysym.h>
+#include "mlx_linux/mlx.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -41,10 +41,20 @@ typedef	struct s_pos
 	int	x;
 }	t_pos;
 
+typedef	struct s_map
+{
+	char	**map;
+	int		width;
+	int		height;
+}	t_map;
+
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*window;
+	void	*imgs[5];
+	t_map	map;
 }	t_data;
 
 // Libft
@@ -67,7 +77,7 @@ int		check_walls(char **map, int lines);
 t_pos	get_pos_p(char **map);
 int		access_elems(char **map, t_pos size, t_pos p);
 void	flood_fill(char	**tmp, t_pos size, t_pos current, char to_fill);
-void	errors(char *msg);
+void	errors(char *msg, char **map);
 void	check_newline(char *str, t_buff *tmp, t_buff *new_node);
 char	*create_str(t_buff *lst, t_buff *new_node, int count);
 

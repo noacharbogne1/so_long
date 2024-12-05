@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noacharbogne <noacharbogne@student.42.f    +#+  +:+       +#+        */
+/*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/04 14:21:33 by noacharbogn      ###   ########.fr       */
+/*   Updated: 2024/12/05 09:15:30 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include "so_long.h"
+#include "so_long.h"
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -22,7 +22,7 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int	render_background(void *img, t_data *data)
+int	render_background(t_data *data)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,10 @@ int	render_background(void *img, t_data *data)
 	while (i < WINDOW_HEIGHT)
 	{
 		while (j < WINDOW_WIDTH)
-			mlx_xpm_file_to_image(data->mlx, PATH_BG, i, j);
+		{
+			mlx_put_image_to_window(data->mlx, data->window, data->imgs[0], i, j);
+			j++;
+		}
 		j = 0;
 		i++;
 	}
@@ -41,14 +44,17 @@ int	render_background(void *img, t_data *data)
 
 int	render(t_data *data)
 {
-	void	*img;
+	int	height;
+	int	width;
 
+	height = 32;
+	width = 32;
 	if (data->window != NULL)
 	{
-		img = mlx_xpm_file_to_image(data->mlx, PATH_BG, SQUARE, SQUARE);
-		if (!img)
+		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &width, &height);
+		if (!data->imgs[0])
 			return (0);
-		render_background(data, img);
+		render_background(data);
 	}
 	return (0);
 }
@@ -83,5 +89,6 @@ int	main(void)
 	mlx_hook(data.window, DestroyNotify, StructureNotifyMask, &close_window, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_display(data.mlx);
+	mlx_destroy_image(data.mlx, data.imgs);
 	free(data.mlx);
-}*/
+}
