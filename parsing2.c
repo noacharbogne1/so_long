@@ -1,42 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_structs.c                                   :+:      :+:    :+:   */
+/*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 09:44:41 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 12:05:32 by ncharbog         ###   ########.fr       */
+/*   Created: 2024/12/05 10:01:27 by ncharbog          #+#    #+#             */
+/*   Updated: 2024/12/05 10:01:58 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_buff	*create_list(void)
+int	check_argv(char *str)
 {
-	t_buff	*lst;
+	int		i;
+	int		j;
+	char	*ber;
 
-	lst = malloc(sizeof(t_buff));
-	if (!lst)
-		return (NULL);
-	lst->next = NULL;
-	ft_memset(lst->buffer, 0, sizeof(lst->buffer));
-	return (lst);
+	i = 0;
+	j = 0;
+	ber = ".ber";
+	while (str[i])
+		i++;
+	if (i == 4)
+		errors (ARGV, NULL);
+	i = i - 4;
+	while (str[i])
+	{
+		while (str[i + j] == ber[j])
+		{
+			j++;
+			if (ber[j] == '\0')
+				return (1);
+		}
+		i++;
+	}
+	errors(ARGV, NULL);
+	return (0);
 }
 
-void	init_data(t_data *data)
+void	ft_free_map(char **tab)
 {
 	int	i;
 
 	i = 0;
-	data->mlx = NULL;
-	data->window = NULL;
-	while (i < 5)
-	{
-		data->imgs[i] = NULL;
+	while (tab[i])
 		i++;
-	}
-	data->map.c = 0;
-	data->map.p = 0;
-	data->map.e = 0;
+	while (i--)
+		free(tab[i]);
+	free(tab);
 }

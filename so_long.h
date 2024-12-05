@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 09:07:07 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:05:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ typedef struct s_buff
 	char			buffer[BUFFER_SIZE + 2];
 }	t_buff;
 
-typedef struct s_elems
-{
-	int	c;
-	int	p;
-	int	e;
-}	t_elems;
-
 typedef	struct s_pos
 {
 	int	y;
@@ -44,8 +37,11 @@ typedef	struct s_pos
 typedef	struct s_map
 {
 	char	**map;
-	int		width;
-	int		height;
+	int		c;
+	int		p;
+	int		e;
+	//int		width;
+	//int		height;
 }	t_map;
 
 
@@ -57,7 +53,7 @@ typedef struct s_data
 	t_map	map;
 }	t_data;
 
-// Libft
+// Libft/
 void	ft_lstadd_back(t_buff **lst, t_buff *new);
 void	ft_lstclear(t_buff **lst);
 t_buff	*ft_lstlast(t_buff *lst);
@@ -67,18 +63,35 @@ void	*ft_memset(void *s, int c, size_t n);
 char	**ft_split(char const *s, char c);
 
 // parsing.c
-t_buff	*create_list(void);
+char	*create_str(t_buff *lst, t_buff *new_node, int count);
+void	check_newline(char *str, t_buff *tmp, t_buff *new_node);
 char	**get_map(int fd);
+int		check_map(t_data *data);
+
+// parsing2.c
+int		check_argv(char *str);
 void	ft_free_map(char **tab);
-t_elems	create_elems(void);
-int		check_elems(char **map, t_elems elems);
+
+// create_structs.c
+t_buff	*create_list(void);
+void	init_data(t_data *data);
+
+// errors_map.c
 int		check_map_len(char **map);
+int		check_elems(t_data *data);
 int		check_walls(char **map, int lines);
 t_pos	get_pos_p(char **map);
+
+// errors_map2.c
+void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill);
 int		access_elems(char **map, t_pos size, t_pos p);
-void	flood_fill(char	**tmp, t_pos size, t_pos current, char to_fill);
 void	errors(char *msg, char **map);
-void	check_newline(char *str, t_buff *tmp, t_buff *new_node);
-char	*create_str(t_buff *lst, t_buff *new_node, int count);
+
+// window.c
+int		handle_keypress(int keysym, t_data *data);
+int		render_background(t_data *data);
+int		render(t_data *data);
+int		close_window(t_data *data);
+void	window(t_data *data);
 
 #endif

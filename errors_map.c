@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 08:36:26 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:17:04 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,32 @@ int	check_map_len(char **map)
 	return (i);
 }
 
-int	check_elems(char **map, t_elems elems)
+int	check_elems(t_data *data)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (data->map.map[i])
 	{
-		while (map[i][j])
+		while (data->map.map[i][j])
 		{
-			if (map[i][j] == 'C')
-				elems.c++;
-			else if (map[i][j] == 'E' && elems.e < 2)
-				elems.e++;
-			else if (map[i][j] == 'P' && elems.p < 2)
-				elems.p++;
-			else if (map[i][j] != '0' && map[i][j] != '1')
-				errors(CHAR, map);
+			if (data->map.map[i][j] == 'C')
+				data->map.c++;
+			else if (data->map.map[i][j] == 'E' && data->map.e < 2)
+				data->map.e++;
+			else if (data->map.map[i][j] == 'P' && data->map.p < 2)
+				data->map.p++;
+			else if (data->map.map[i][j] != '0' && data->map.map[i][j] != '1')
+				errors(CHAR, data->map.map);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	if (elems.c < 1 || elems.e != 1 || elems.p != 1)
-		errors(CHAR2, map);
+	if (data->map.c < 1 || data->map.e != 1 || data->map.p != 1)
+		errors(CHAR2, data->map.map);
 	return (1);
 }
 
@@ -107,39 +107,4 @@ t_pos	get_pos_p(char **map)
 		i++;
 	}
 	return (pos);
-}
-
-void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill)
-{
-	if (cur.x < 0 || cur.y < 0 || tmp[cur.y][cur.x] == to_fill)
-		return ;
-	tmp[cur.y][cur.x] = '1';
-	flood_fill(tmp, size, (t_pos){cur.y + 1, cur.x}, to_fill);
-	flood_fill(tmp, size, (t_pos){cur.y - 1, cur.x}, to_fill);
-	flood_fill(tmp, size, (t_pos){cur.y, cur.x + 1}, to_fill);
-	flood_fill(tmp, size, (t_pos){cur.y, cur.x - 1}, to_fill);
-}
-
-int	access_elems(char **map, t_pos size, t_pos p)
-{
-	int		i;
-	int		j;
-	char	**tmp;
-
-	i = 0;
-	j = 0;
-	tmp = map;
-	flood_fill(tmp, size, p, '1');
-	while (tmp[i])
-	{
-		while (tmp[i][j])
-		{
-			if (tmp[i][j] == 'E' || tmp[i][j] == 'C')
-				errors(ELEMS, map);
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-	return (1);
 }

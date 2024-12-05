@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:49:57 by noacharbogn       #+#    #+#             */
-/*   Updated: 2024/12/05 09:00:44 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:54:04 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define LEN "the map is not rectangular"
 # define NEWLINE "the map contains an empty newline"
 # define ARGV "the map is not a correct .ber"
+# define BG "the background image could not be loaded"
+# define MLX "the initialisation of MLX failed"
 
 //xpm images
 # define PATH_BG "assets/bg.xpm"
@@ -32,7 +34,7 @@
 
 //others
 # define BUFFER_SIZE 2
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 576
+# define WINDOW_HEIGHT 278
 
 #endif
