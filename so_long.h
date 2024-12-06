@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 16:03:58 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:24:39 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	void	*imgs[5];
-	
+
 	t_map	map;
 }	t_data;
 
@@ -92,7 +92,7 @@ void	errors(char *msg, t_data *data);
 
 // window.c
 int		handle_keypress(int keysym, t_data *data);
-int		render_background(t_data *data);
+void	render_game(t_data *data, int y, int x, char c);
 int		render(t_data *data);
 int		close_window(t_data *data);
 void	window(t_data *data);

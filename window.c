@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 16:12:27 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:44:40 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,47 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int	render_background(t_data *data)
+void	render_game(t_data *data, int y, int x, char c)
 {
-	int	i;
-	int	j;
+	void	*img;
 
-	i = 0;
-	j = 0;
-	while (data->map.map[j] && j < data->map.height)
-	{
-		i = 0;
-		while (data->map.map[j][i] && i < data->map.width)
-		{
-			if (data->map.map[j][i] != '1')
-				mlx_put_image_to_window(data->mlx, data->window, data->imgs[0], i * TS, j * TS);
-			else if (data->map.map[j][i] == '1')
-				mlx_put_image_to_window(data->mlx, data->window, data->imgs[1], i * TS, j * TS);
-			i++;
-		}
-		j++;
-	}
-	return (0);
+	img = NULL;
+	if (c == '0')
+		img = data->imgs[0];
+	else if (c == '1')
+		img = data->imgs[1];
+	else if (c == 'P')
+		img = data->imgs[2];
+	else if (c == 'C')
+		img = data->imgs[3];
+	else if (c == 'E')
+		img = data->imgs[4];
+	if (img != NULL)
+		mlx_put_image_to_window(data->mlx, data->window, img, x * TS, y * TS);
+	else
+		errors(RENDER, data);
 }
 
 int	render(t_data *data)
 {
-	int	square;
+	int	x;
+	int	y;
 
-	square = 32;
+	x = 0;
+	y = 0;
 	if (data->window != NULL)
-		render_background(data);
+	{
+		while (data->map.map[y] && y < data->map.height)
+		{
+			x = 0;
+			while (data->map.map[y][x] && x < data->map.width)
+			{
+				render_game(data, y, x, data->map.map[y][x]);
+				x++;
+			}
+			y++;
+		}
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:49:57 by noacharbogn       #+#    #+#             */
-/*   Updated: 2024/12/06 10:59:51 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:45:03 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define C "the collectible image could not be loaded"
 # define E "the exit image could not be loaded"
 # define MLX "the initialisation of MLX failed"
+# define RENDER "the rendering of the assets failed"
 
 //xpm images
 # define PATH_BG "assets/bg.xpm"
