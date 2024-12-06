@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 12:05:24 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:25:09 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef	struct s_map
 	int		c;
 	int		p;
 	int		e;
-	//int		width;
-	//int		height;
+	int		width;
+	int		height;
 }	t_map;
 
 
@@ -61,6 +61,7 @@ int		ft_strlen(const char *s);
 char	*ft_strcpy(char *dest, char *src, int i);
 void	*ft_memset(void *s, int c, size_t n);
 char	**ft_split(char const *s, char c);
+char	*ft_strdup(const char *s);
 
 // parsing.c
 char	*create_str(t_buff *lst, t_buff *new_node, int count);
@@ -75,17 +76,18 @@ void	ft_free_map(char **tab);
 // create_structs.c
 t_buff	*create_list(void);
 void	init_data(t_data *data);
+void	init_imgs(t_data *data);
 
 // errors_map.c
-int		check_map_len(char **map);
+int		check_map_len(t_data *data);
 int		check_elems(t_data *data);
-int		check_walls(char **map, int lines);
+int		check_walls(t_data *data);
 t_pos	get_pos_p(char **map);
 
 // errors_map2.c
 void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill);
-int		access_elems(char **map, t_pos size, t_pos p);
-void	errors(char *msg, char **map);
+int		access_elems(t_data *data, t_pos size, t_pos p);
+void	errors(char *msg, t_data *data);
 
 // window.c
 int		handle_keypress(int keysym, t_data *data);

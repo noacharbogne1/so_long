@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 11:13:31 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:36:31 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,19 @@ int	check_map(t_data *data)
 	t_pos	p;
 
 	j = 0;
-	check_map_len(data->map.map);
-	size.y = check_map_len(data->map.map);
-	check_walls(data->map.map, size.y);
+	check_map_len(data);
+	data->map.height = check_map_len(data);
+	check_walls(data);
 	check_elems(data);
 	p = get_pos_p(data->map.map);
 	while (data->map.map[0][j])
 		j++;
-	size.x = j;
-	if (size.y > 30 || size.x > 60) // à vérifier
+	data->map.width = j;
+	if (data->map.height > 30 || data->map.width > 60) // à vérifier
 		return (0);
-	access_elems(data->map.map, size, p);
+	size.y = data->map.width;
+	size.x = data->map.height;
+	access_elems(data, size, p);
 	return (1);
 }
 

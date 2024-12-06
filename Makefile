@@ -6,7 +6,7 @@
 #    By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 08:31:13 by ncharbog          #+#    #+#              #
-#    Updated: 2024/12/05 10:23:27 by ncharbog         ###   ########.fr        #
+#    Updated: 2024/12/06 10:34:41 by ncharbog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = window.c \
 	libft/ft_memset.c \
 	libft/ft_split.c \
 	libft/ft_strlen.c \
+	libft/ft_strdup.c \
 	libft/libft_modified.c
 
 OBJ = $(SRC:.c=.o)

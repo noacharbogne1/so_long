@@ -6,24 +6,24 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 11:17:04 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:09:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_map_len(char **map)
+int	check_map_len(t_data *data)
 {
 	int		i;
 	int	len;
 
 	i = 0;
-	len = ft_strlen(map[i]);
+	len = ft_strlen(data->map.map[i]);
 	i++;
-	while (map[i])
+	while (data->map.map[i])
 	{
-		if (len != ft_strlen(map[i]))
-			errors(LEN, map);
+		if (len != ft_strlen(data->map.map[i]))
+			errors(LEN, data);
 		i++;
 	}
 	return (i);
@@ -47,18 +47,18 @@ int	check_elems(t_data *data)
 			else if (data->map.map[i][j] == 'P' && data->map.p < 2)
 				data->map.p++;
 			else if (data->map.map[i][j] != '0' && data->map.map[i][j] != '1')
-				errors(CHAR, data->map.map);
+				errors(CHAR, data);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
 	if (data->map.c < 1 || data->map.e != 1 || data->map.p != 1)
-		errors(CHAR2, data->map.map);
+		errors(CHAR2, data);
 	return (1);
 }
 
-int	check_walls(char **map, int lines)
+int	check_walls(t_data *data)
 {
 	int	i;
 	int	j;
@@ -67,14 +67,14 @@ int	check_walls(char **map, int lines)
 	i = 0;
 	j = 0;
 	len = 0;
-	while (map[0][len])
+	while (data->map.map[0][len])
 		len++;
-	while (i < lines)
+	while (i < data->map.height)
 	{
-		while (map[i][j])
+		while (data->map.map[i][j])
 		{
-			if (((i == 0 || i == lines - 1) || (j == 0 || j == len - 1)) && map[i][j] != '1')
-				errors(WALLS, map);
+			if (((i == 0 || i == data->map.height - 1) || (j == 0 || j == len - 1)) && data->map.map[i][j] != '1')
+				errors(WALLS, data);
 			else
 				j++;
 		}

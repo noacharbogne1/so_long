@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/05 12:08:11 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:11:17 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 	{
+		mlx_loop_end(data->mlx);
 		mlx_destroy_window(data->mlx, data->window);
 		data->window = NULL;
 	}
@@ -26,27 +27,21 @@ int	render_background(t_data *data)
 {
 	int	i;
 	int	j;
-	int	x;
-	int	y;
 
 	i = 0;
 	j = 0;
-	x = 0;
-	y = 0;
-	while (data->map.map[x] && i < WINDOW_HEIGHT)
+	while (data->map.map[j] && j < data->map.height)
 	{
-		j = 0;
-		while (data->map.map[x][y])
+		i = 0;
+		while (data->map.map[j][i] && i < data->map.width)
 		{
-			if (data->map.map[x][y] != '1' && j < WINDOW_WIDTH)
-			{
-				mlx_put_image_to_window(data->mlx, data->window, data->imgs[0], j, i);
-				j += 32;
-			}
-			y++;
+			if (data->map.map[j][i] != '1')
+				mlx_put_image_to_window(data->mlx, data->window, data->imgs[0], j * TS, i * TS);
+			else if (data->map.map[j][i] == '1')
+				mlx_put_image_to_window(data->mlx, data->window, data->imgs[1], j * TS, i * TS);
+			i++;
 		}
-		x++;
-		i += 32;
+		j++;
 	}
 	return (0);
 }
@@ -57,21 +52,24 @@ int	render(t_data *data)
 
 	square = 32;
 	if (data->window != NULL)
-	{
-		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &square, &square);
-		if (!data->imgs[0])
-			errors(BG, data->map.map);
 		render_background(data);
-	}
 	return (0);
 }
 
 int	close_window(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	if (data->window != NULL)
 	{
 		mlx_destroy_window(data->mlx, data->window);
 		data->window = NULL;
+	}
+	while (i < 5)
+	{
+		mlx_destroy_image(data->mlx, data->imgs[i]);
+		i++;
 	}
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -80,21 +78,29 @@ int	close_window(t_data *data)
 
 void	window(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		errors(MLX, data->map.map);
-	data->window = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Window");
+		errors(MLX, data);
+	data->window = mlx_new_window(data->mlx, data->map.width * TS, data->map.height * TS, "Window");
+	init_imgs(data);
 	if (!data->window)
 	{
-		free(data->window);
+		errors(MLX, data);
 		return ;
 	}
-	mlx_loop_hook(data->mlx, &render, &data);
+	render(data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &close_window, &data);
 	mlx_loop(data->mlx);
 	mlx_destroy_display(data->mlx);
-	mlx_destroy_image(data->mlx, data->imgs[0]);
-	free(data->imgs[0]);
+	while (i < 5)
+	{
+		mlx_destroy_image(data->mlx, data->imgs[i]);
+		i++;
+	}
 	free(data->mlx);
+	data->mlx = NULL;
 }
