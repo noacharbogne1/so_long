@@ -6,7 +6,7 @@
 #    By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 08:31:13 by ncharbog          #+#    #+#              #
-#    Updated: 2024/12/06 10:34:41 by ncharbog         ###   ########.fr        #
+#    Updated: 2024/12/06 15:51:27 by ncharbog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,14 +36,21 @@ MLX_DIR = mlx_linux
 
 PRINTF_DIR = ft_printf
 
-OBJ_MLX = $(MLX_DIR)/libmlx_Linux.a
+OBJ_MLX = $(MLX_DIR)/libmlx.a
 
 OBJ_PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 all: $(NAME)
 
+$(OBJ_MLX):
+	cd $(MLX_DIR) && make
+
+$(OBJ_PRINTF):
+	cd $(PRINTF_DIR) && make
+
 $(NAME): $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF)
-	$(CC) $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF) -L$(MLX_DIR) -lmlx_Linux -L$(PRINTF_DIR) -lftprintf -L/usr/lib -I$(MLX_DIR) -I$(PRINTF_DIR) -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF) -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -I$(MLX_DIR) -I$(PRINTF_DIR) -lXext -lX11 -lm -lz -o $(NAME)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -I$(MLX_DIR) -I$(PRINTF_DIR) -O3 -c $< -o $@
 

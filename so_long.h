@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 10:25:09 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:03:58 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	void	*imgs[5];
+	
 	t_map	map;
 }	t_data;
 

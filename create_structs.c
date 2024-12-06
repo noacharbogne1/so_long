@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:44:41 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 08:49:15 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:06:47 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,22 @@ void	init_data(t_data *data)
 
 void	init_imgs(t_data *data)
 {
-	int	square;
+	int	a;
+	int	b;
+	int	c;
+	int	d;
+	int	e;
+	int	f;
 
-	square = 32;
 	if (data->window)
 	{
-		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &square, &square);
+		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &a, &b);
 		if (!data->imgs[0])
 			errors(BG, data);
-		data->imgs[1] = mlx_xpm_file_to_image(data->mlx, PATH_WALLS, &square, &square);
+		data->imgs[1] = mlx_xpm_file_to_image(data->mlx, PATH_WALLS, &c, &d);
 		if (!data->imgs[1])
 			errors(WALLS_IMG, data);
-		data->imgs[2] = mlx_xpm_file_to_image(data->mlx, PATH_P, &square, &square);
+		data->imgs[2] = mlx_xpm_file_to_image(data->mlx, PATH_P, &e, &f);
 		if (!data->imgs[2])
 			errors(P, data);
 		//data->imgs[3] = mlx_xpm_file_to_image(data->mlx, PATH_C, &square, &square);
