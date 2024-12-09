@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:43:05 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:52:03 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ void	init_imgs(t_data *data);
 
 // errors_map.c
 int		check_map_len(t_data *data);
-int		check_elems(t_data *data);
-int		check_walls(t_data *data);
+void	check_elems(t_data *data);
+void	check_walls(t_data *data);
 t_pos	get_pos_p(char **map);
 
 // errors_map2.c
 void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill);
-int		access_elems(t_data *data, t_pos size, t_pos p);
+void	access_elems(t_data *data, t_pos size, t_pos p);
 void	errors(char *msg, t_data *data);
 
 // window.c
@@ -101,8 +101,8 @@ void	window(t_data *data);
 // movement.c
 void	handle_e_x(t_data *data, int new);
 void	handle_e_y(t_data *data, int new);
-int		handle_movement_y(t_data *data, int new);
-int		handle_movement_x(t_data *data, int new);
+void	handle_movement_y(t_data *data, int new);
+void	handle_movement_x(t_data *data, int new);
 void	end_game(t_data *data);
 void	print_moves(t_data *data);
 

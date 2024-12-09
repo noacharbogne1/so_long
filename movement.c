@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:21:12 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:30:32 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:50:23 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	handle_e_x(t_data *data, int new)
 	data->map.e = 1;
 }
 
-int	handle_movement_y(t_data *data, int new)
+void	handle_movement_y(t_data *data, int new)
 {
 	char	c;
 	char	d;
@@ -93,12 +93,9 @@ int	handle_movement_y(t_data *data, int new)
 		data->pos.y = new;
 		print_moves(data);
 	}
-	else
-		return (0);
-	return (1);
 }
 
-int	handle_movement_x(t_data *data, int new)
+void	handle_movement_x(t_data *data, int new)
 {
 	char	c;
 	char	d;
@@ -120,7 +117,4 @@ int	handle_movement_x(t_data *data, int new)
 		data->pos.x = new;
 		print_moves(data);
 	}
-	else
-		return (0);
-	return (1);
 }

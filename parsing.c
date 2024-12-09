@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 10:36:31 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:51:01 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	check_map(t_data *data)
 	t_pos	p;
 
 	j = 0;
-	check_map_len(data);
 	data->map.height = check_map_len(data);
 	check_walls(data);
 	check_elems(data);

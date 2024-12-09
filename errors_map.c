@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 10:09:24 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:51:20 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_map_len(t_data *data)
 	return (i);
 }
 
-int	check_elems(t_data *data)
+void	check_elems(t_data *data)
 {
 	int		i;
 	int		j;
@@ -55,10 +55,9 @@ int	check_elems(t_data *data)
 	}
 	if (data->map.c < 1 || data->map.e != 1 || data->map.p != 1)
 		errors(CHAR2, data);
-	return (1);
 }
 
-int	check_walls(t_data *data)
+void	check_walls(t_data *data)
 {
 	int	i;
 	int	j;
@@ -81,7 +80,6 @@ int	check_walls(t_data *data)
 		j = 0;
 		i++;
 	}
-	return (1);
 }
 
 t_pos	get_pos_p(char **map)

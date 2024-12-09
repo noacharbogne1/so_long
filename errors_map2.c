@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 11:27:50 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:51:54 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill)
 	flood_fill(tmp, size, (t_pos){cur.y, cur.x - 1}, to_fill);
 }
 
-int	access_elems(t_data *data, t_pos size, t_pos p)
+void	access_elems(t_data *data, t_pos size, t_pos p)
 {
 	int		i;
 	int		j;
@@ -72,7 +72,6 @@ int	access_elems(t_data *data, t_pos size, t_pos p)
 		j = 0;
 	}
 	ft_free_map(tmp);
-	return (1);
 }
 
 void	errors(char *msg, t_data *data)
