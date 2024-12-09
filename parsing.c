@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:51:01 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:58:46 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ char	*create_str(t_buff *lst, t_buff *new_node, int count)
 	check_newline(str, tmp, new_node);
 	return (str);
 }
+
 void	check_newline(char *str, t_buff *tmp, t_buff *new_node)
 {
 	int	i;
 
 	i = 0;
+	if (str[i] == '\0' || str[i] == '\n')
+	{
+		free(str);
+		ft_lstclear(&tmp);
+		free(new_node);
+		errors(NEWLINE, NULL);
+	}
 	while (str[i])
 	{
-		if (i == 0 && str[i] == '\n')
-		{
-			free(str);
-			ft_lstclear(&tmp);
-			free(new_node);
-			errors(NEWLINE, NULL);
-		}
 		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
 			free(str);
@@ -103,8 +104,8 @@ int	check_map(t_data *data)
 	while (data->map.map[0][j])
 		j++;
 	data->map.width = j;
-	if (data->map.height > 30 || data->map.width > 60) // à vérifier
-		return (0);
+	if (data->map.height > 30 || data->map.width > 60)
+		errors(MAP, data);
 	size.y = data->map.width;
 	size.x = data->map.height;
 	access_elems(data, size, p);
@@ -122,11 +123,13 @@ int	main(int argc, char **argv)
 		check_argv(argv[1]);
 		fd = open(argv[1], O_RDONLY);
 		if (fd >= 1024 || fd < 0)
-			return (0);
+			errors(FD, NULL);
 		data.map.map = get_map(fd);
 		close(fd);
 		check_map(&data);
 		window(&data);
 		ft_free_map(data.map.map);
 	}
+	errors(ARGC, NULL);
+	return (0);
 }

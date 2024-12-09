@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:51:54 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:30:45 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,24 @@ void	errors(char *msg, t_data *data)
 
 	i = 0;
 	if (msg)
-		ft_printf("Error : %s\n", msg);
-	while (i < 5)
+		ft_printf("Error\n%s", msg);
+	if (data)
 	{
-		if (data->imgs[i] && data->mlx)
-			mlx_destroy_image(data->mlx, data->imgs[i]);
-		i++;
+		while (i < 5)
+		{
+			if (data->mlx && data->imgs[i])
+				mlx_destroy_image(data->mlx, data->imgs[i]);
+			i++;
+		}
+		if (data->mlx)
+		{
+			if (data->window)
+				mlx_destroy_window(data->mlx, data->window);
+			mlx_destroy_display(data->mlx);
+			free(data->mlx);
+		}
+		if (data->map.map)
+			ft_free_map(data->map.map);
 	}
-	if (data->mlx)
-	{
-		if (data->window)
-			mlx_destroy_window(data->mlx, data->window);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-	if (data->map.map)
-		ft_free_map(data->map.map);
 	exit(EXIT_FAILURE);
 }

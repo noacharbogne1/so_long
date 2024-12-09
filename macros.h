@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:49:57 by noacharbogn       #+#    #+#             */
-/*   Updated: 2024/12/06 17:45:03 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:36:07 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 # define MACROS_H
 
 //errors messages
+# define MAP "the map is too large"
+# define FD "permission denied"
 # define ELEMS "not all map elements are accessible to the player"
 # define WALLS "the map is not framed by walls"
 # define CHAR2 "the map contains too much or not enough C, E or P"
 # define CHAR "the map contains unauthorized characters"
 # define LEN "the map is not rectangular"
 # define NEWLINE "the map contains an empty newline"
+# define ARGC "there is not 2 arguments"
 # define ARGV "the map is not a correct .ber"
 # define BG "the background image could not be loaded"
 # define WALLS_IMG "the walls image could not be loaded"
