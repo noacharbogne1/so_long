@@ -6,11 +6,17 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:21:12 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 11:52:44 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:30:32 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	print_moves(t_data *data)
+{
+	data->moves++;
+	ft_printf("The total of moves is : %d\n", data->moves);
+}
 
 void	end_game(t_data *data)
 {
@@ -39,6 +45,7 @@ void	handle_e_y(t_data *data, int new)
 		render_game(data, data->pos.y, data->pos.x, c);
 		render_game(data, new, data->pos.x, d);
 		data->pos.y = new;
+		print_moves(data);
 	}
 	data->map.e = 1;
 }
@@ -59,6 +66,7 @@ void	handle_e_x(t_data *data, int new)
 		render_game(data, data->pos.y, data->pos.x, c);
 		render_game(data, data->pos.y, new, d);
 		data->pos.x = new;
+		print_moves(data);
 	}
 	data->map.e = 1;
 }
@@ -83,6 +91,7 @@ int	handle_movement_y(t_data *data, int new)
 		render_game(data, data->pos.y, data->pos.x, c);
 		render_game(data, new, data->pos.x, d);
 		data->pos.y = new;
+		print_moves(data);
 	}
 	else
 		return (0);
@@ -109,6 +118,7 @@ int	handle_movement_x(t_data *data, int new)
 		render_game(data, data->pos.y, data->pos.x, c);
 		render_game(data, data->pos.y, new, d);
 		data->pos.x = new;
+		print_moves(data);
 	}
 	else
 		return (0);

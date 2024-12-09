@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 11:53:38 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:43:05 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	void	*imgs[5];
+	int		moves;
 	t_map	map;
 	t_pos	pos;
 }	t_data;
@@ -103,5 +104,6 @@ void	handle_e_y(t_data *data, int new);
 int		handle_movement_y(t_data *data, int new);
 int		handle_movement_x(t_data *data, int new);
 void	end_game(t_data *data);
+void	print_moves(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 11:02:07 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:25:34 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	handle_press(int keysym, t_data *data)
 {
-	int	new;
+	int			new;
 
 	new = 0;
 	if (keysym == XK_Escape)
