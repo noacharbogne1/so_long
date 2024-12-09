@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 16:30:45 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:07:45 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**get_tmp(t_data *data)
 	int		i;
 
 	i = 0;
-	tmp = malloc ((data->map.height + 1) * sizeof(char*));
+	tmp = malloc((data->map.height + 1) * sizeof(char *));
 	if (!tmp)
 		return (0);
 	while (i < data->map.height)

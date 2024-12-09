@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:44:41 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:29:46 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:07:06 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ void	init_data(t_data *data)
 
 void	init_imgs(t_data *data)
 {
-	int	square;
+	int	l;
 
-	square = 32;
+	l = 32;
 	if (data->window)
 	{
-		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &square, &square);
+		data->imgs[0] = mlx_xpm_file_to_image(data->mlx, PATH_BG, &l, &l);
 		if (!data->imgs[0])
 			errors(BG, data);
-		data->imgs[1] = mlx_xpm_file_to_image(data->mlx, PATH_WALLS, &square, &square);
+		data->imgs[1] = mlx_xpm_file_to_image(data->mlx, PATH_WALLS, &l, &l);
 		if (!data->imgs[1])
 			errors(WALLS_IMG, data);
-		data->imgs[2] = mlx_xpm_file_to_image(data->mlx, PATH_P, &square, &square);
+		data->imgs[2] = mlx_xpm_file_to_image(data->mlx, PATH_P, &l, &l);
 		if (!data->imgs[2])
 			errors(P, data);
-		data->imgs[3] = mlx_xpm_file_to_image(data->mlx, PATH_C, &square, &square);
+		data->imgs[3] = mlx_xpm_file_to_image(data->mlx, PATH_C, &l, &l);
 		if (!data->imgs[3])
 			errors(C, data);
-		data->imgs[4] = mlx_xpm_file_to_image(data->mlx, PATH_E, &square, &square);
+		data->imgs[4] = mlx_xpm_file_to_image(data->mlx, PATH_E, &l, &l);
 		if (!data->imgs[4])
 			errors(E, data);
 	}

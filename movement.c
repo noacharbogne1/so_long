@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:21:12 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:50:23 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:09:51 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,6 @@ void	print_moves(t_data *data)
 {
 	data->moves++;
 	ft_printf("The total of moves is : %d\n", data->moves);
-}
-
-void	end_game(t_data *data)
-{
-	if (data->map.c == 0)
-		errors(NULL, data);
-	else
-	{
-		data->map.e = 2;
-		return ;
-	}
 }
 
 void	handle_e_y(t_data *data, int new)

@@ -6,7 +6,7 @@
 #    By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 08:31:13 by ncharbog          #+#    #+#              #
-#    Updated: 2024/12/09 10:35:18 by ncharbog         ###   ########.fr        #
+#    Updated: 2024/12/09 17:10:27 by ncharbog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME = so_long
 
 SRC = window.c \
 	movement.c \
+	end_game.c \
 	parsing.c \
 	parsing2.c \
 	create_structs.c \

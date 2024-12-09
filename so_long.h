@@ -6,21 +6,21 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:52:03 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:14:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "macros.h"
-#include "ft_printf/ft_printf.h"
-#include "mlx_linux/mlx.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include "macros.h"
+# include "ft_printf/ft_printf.h"
+# include "mlx_linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_buff
 {
@@ -28,13 +28,13 @@ typedef struct s_buff
 	char			buffer[BUFFER_SIZE + 2];
 }	t_buff;
 
-typedef	struct s_pos
+typedef struct s_pos
 {
 	int	y;
 	int	x;
 }	t_pos;
 
-typedef	struct s_map
+typedef struct s_map
 {
 	char	**map;
 	int		c;
@@ -43,7 +43,6 @@ typedef	struct s_map
 	int		width;
 	int		height;
 }	t_map;
-
 
 typedef struct s_data
 {
@@ -103,7 +102,9 @@ void	handle_e_x(t_data *data, int new);
 void	handle_e_y(t_data *data, int new);
 void	handle_movement_y(t_data *data, int new);
 void	handle_movement_x(t_data *data, int new);
-void	end_game(t_data *data);
 void	print_moves(t_data *data);
+
+// end_game.c
+void	end_game(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:25:34 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:12:31 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	handle_press(int keysym, t_data *data)
 		new = data->pos.x - 1;
 	if (keysym == XK_w || keysym == XK_s)
 		handle_movement_y(data, new);
-	else if (keysym == XK_a|| keysym == XK_d)
+	else if (keysym == XK_a || keysym == XK_d)
 		handle_movement_x(data, new);
 	return (0);
 }
@@ -100,7 +100,8 @@ void	window(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		errors(MLX, data);
-	data->window = mlx_new_window(data->mlx, data->map.width * TS, data->map.height * TS, "Window");
+	data->window = mlx_new_window(data->mlx, data->map.width * TS,
+			data->map.height * TS, "Window");
 	if (!data->window)
 	{
 		errors(MLX, data);
@@ -109,6 +110,7 @@ void	window(t_data *data)
 	init_imgs(data);
 	render(data);
 	mlx_key_hook(data->window, handle_press, data);
-	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &close_window, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask,
+		&close_window, data);
 	mlx_loop(data->mlx);
 }

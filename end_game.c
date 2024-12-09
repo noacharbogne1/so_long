@@ -1,53 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing2.c                                         :+:      :+:    :+:   */
+/*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 10:01:27 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 17:10:55 by ncharbog         ###   ########.fr       */
+/*   Created: 2024/12/09 17:09:33 by ncharbog          #+#    #+#             */
+/*   Updated: 2024/12/09 17:10:00 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_argv(char *str)
+void	end_game(t_data *data)
 {
-	int		i;
-	int		j;
-	char	*ber;
-
-	i = 0;
-	j = 0;
-	ber = ".ber";
-	while (str[i])
-		i++;
-	if (i == 4)
-		errors (ARGV, NULL);
-	i = i - 4;
-	while (str[i])
+	if (data->map.c == 0)
+		errors(NULL, data);
+	else
 	{
-		while (str[i + j] == ber[j])
-		{
-			j++;
-			if (ber[j] == '\0')
-				return (1);
-		}
-		i++;
+		data->map.e = 2;
+		return ;
 	}
-	errors(ARGV, NULL);
-	return (0);
-}
-
-void	ft_free_map(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	while (i--)
-		free(tab[i]);
-	free(tab);
 }

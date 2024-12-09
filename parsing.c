@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:32:47 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 16:58:46 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:11:12 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**get_map(int fd)
 	while (1)
 	{
 		if (read(fd, &new_node->buffer, BUFFER_SIZE) <= 0)
-			break;
+			break ;
 		else
 		{
 			count++;

@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:09:11 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 12:51:20 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:08:57 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_map_len(t_data *data)
 {
 	int		i;
-	int	len;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(data->map.map[i]);
@@ -72,7 +72,8 @@ void	check_walls(t_data *data)
 	{
 		while (data->map.map[i][j])
 		{
-			if (((i == 0 || i == data->map.height - 1) || (j == 0 || j == len - 1)) && data->map.map[i][j] != '1')
+			if (((i == 0 || i == data->map.height - 1)
+					|| (j == 0 || j == len - 1)) && data->map.map[i][j] != '1')
 				errors(WALLS, data);
 			else
 				j++;
