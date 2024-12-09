@@ -6,7 +6,7 @@
 #    By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 08:31:13 by ncharbog          #+#    #+#              #
-#    Updated: 2024/12/06 15:51:27 by ncharbog         ###   ########.fr        #
+#    Updated: 2024/12/09 10:35:18 by ncharbog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 NAME = so_long
 
 SRC = window.c \
+	movement.c \
 	parsing.c \
 	parsing2.c \
 	create_structs.c \

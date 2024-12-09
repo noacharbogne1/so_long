@@ -6,16 +6,31 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:26:28 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 17:44:40 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:02:07 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	handle_keypress(int keysym, t_data *data)
+int	handle_press(int keysym, t_data *data)
 {
+	int	new;
+
+	new = 0;
 	if (keysym == XK_Escape)
 		errors(NULL, data);
+	else if (keysym == XK_w)
+		new = data->pos.y - 1;
+	else if (keysym == XK_d)
+		new = data->pos.x + 1;
+	else if (keysym == XK_s)
+		new = data->pos.y + 1;
+	else if (keysym == XK_a)
+		new = data->pos.x - 1;
+	if (keysym == XK_w || keysym == XK_s)
+		handle_movement_y(data, new);
+	else if (keysym == XK_a|| keysym == XK_d)
+		handle_movement_x(data, new);
 	return (0);
 }
 
@@ -29,7 +44,11 @@ void	render_game(t_data *data, int y, int x, char c)
 	else if (c == '1')
 		img = data->imgs[1];
 	else if (c == 'P')
+	{
 		img = data->imgs[2];
+		data->pos.y = y;
+		data->pos.x = x;
+	}
 	else if (c == 'C')
 		img = data->imgs[3];
 	else if (c == 'E')
@@ -89,7 +108,7 @@ void	window(t_data *data)
 	}
 	init_imgs(data);
 	render(data);
-	mlx_key_hook(data->window, handle_keypress, data);
+	mlx_key_hook(data->window, handle_press, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &close_window, data);
 	mlx_loop(data->mlx);
 }

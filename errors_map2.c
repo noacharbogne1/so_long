@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/06 16:00:57 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:27:50 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,12 @@ void	errors(char *msg, t_data *data)
 	i = 0;
 	if (msg)
 		ft_printf("Error : %s\n", msg);
-	//while (i < 3)
-	//{
-	//	if (data->imgs[i] && data->mlx)
-	//		mlx_destroy_image(data->mlx, data->imgs[i]);
-	//	i++;
-	//}
-	if (data->imgs[0] && data->mlx)
-			mlx_destroy_image(data->mlx, data->imgs[0]);
-	if (data->imgs[1] && data->mlx)
-			mlx_destroy_image(data->mlx, data->imgs[1]);
-	if (data->imgs[2] && data->mlx)
-			mlx_destroy_image(data->mlx, data->imgs[2]);
+	while (i < 5)
+	{
+		if (data->imgs[i] && data->mlx)
+			mlx_destroy_image(data->mlx, data->imgs[i]);
+		i++;
+	}
 	if (data->mlx)
 	{
 		if (data->window)
