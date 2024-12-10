@@ -44,6 +44,8 @@ LIBFT_DIR = libft
 
 OBJ_MLX = $(MLX_DIR)/libmlx.a
 
+OBJ_MLX2 = $(MLX_DIR)/libmlx_Linux.a
+
 OBJ_PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 all: $(NAME)
@@ -54,7 +56,7 @@ $(OBJ_MLX):
 $(OBJ_PRINTF):
 	cd $(PRINTF_DIR) && make
 
-$(NAME): $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF)
+$(NAME): $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF) $(OBJ_MLX2)
 	$(CC) $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF) -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -I$(MLX_DIR) -I$(PRINTF_DIR) -lXext -lX11 -lm -lz -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
@@ -62,7 +64,7 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -I$(MLX_DIR) -I$(PRINTF_DIR) -O3 -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(OBJ_MLX) $(OBJ_PRINTF)
+	rm -rf $(OBJ_DIR) $(OBJ_MLX) $(OBJ_PRINTF) $(OBJ_MLX2)
 	cd $(PRINTF_DIR) && make clean
 	find libft -name "*.o" -exec rm -f {} \;
 fclean: clean

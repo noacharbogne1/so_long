@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 17:07:45 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:07:53 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void	access_elems(t_data *data, t_pos size, t_pos p)
 		while (tmp[i][j])
 		{
 			if (tmp[i][j] == 'E' || tmp[i][j] == 'C')
+			{
+				ft_free_map(tmp);
 				errors(ELEMS, data);
+			}
 			j++;
 		}
 		i++;
