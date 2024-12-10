@@ -6,7 +6,7 @@
 #    By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 08:31:13 by ncharbog          #+#    #+#              #
-#    Updated: 2024/12/09 17:10:27 by ncharbog         ###   ########.fr        #
+#    Updated: 2024/12/10 10:09:11 by ncharbog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,15 @@ SRC = window.c \
 	libft/ft_strdup.c \
 	libft/libft_modified.c
 
-OBJ = $(SRC:.c=.o)
+OBJ_DIR = .objects
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 MLX_DIR = mlx_linux
 
 PRINTF_DIR = ft_printf
+
+LIBFT_DIR = libft
 
 OBJ_MLX = $(MLX_DIR)/libmlx.a
 
@@ -53,11 +57,14 @@ $(OBJ_PRINTF):
 $(NAME): $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF)
 	$(CC) $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF) -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -I$(MLX_DIR) -I$(PRINTF_DIR) -lXext -lX11 -lm -lz -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	mkdir -p $(@D)
 	$(CC) $(CFLAGS) -I/usr/include -I$(MLX_DIR) -I$(PRINTF_DIR) -O3 -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(OBJ_MLX) $(OBJ_PRINTF)
+	rm -rf $(OBJ_DIR) $(OBJ_MLX) $(OBJ_PRINTF)
+	cd $(PRINTF_DIR) && make clean
+	find libft -name "*.o" -exec rm -f {} \;
 fclean: clean
 	rm -f $(NAME)
 re:	fclean all
