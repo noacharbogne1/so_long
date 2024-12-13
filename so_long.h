@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 17:14:24 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:43:53 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int		close_window(t_data *data);
 void	window(t_data *data);
 
 // movement.c
-void	handle_e_x(t_data *data, int new);
-void	handle_e_y(t_data *data, int new);
 void	handle_movement_y(t_data *data, int new);
 void	handle_movement_x(t_data *data, int new);
 void	print_moves(t_data *data);
