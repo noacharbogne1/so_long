@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:18:59 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/10 16:07:53 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:15:36 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	**get_tmp(t_data *data)
 
 void	flood_fill(char	**tmp, t_pos size, t_pos cur, char to_fill)
 {
-	if (cur.x < 0 || cur.y < 0 || tmp[cur.y][cur.x] == to_fill)
+	if (cur.x < 0 || cur.y < 0 || cur.x >= size.x || cur.y >= size.y
+		|| tmp[cur.y][cur.x] == to_fill)
 		return ;
 	tmp[cur.y][cur.x] = '1';
 	flood_fill(tmp, size, (t_pos){cur.y + 1, cur.x}, to_fill);

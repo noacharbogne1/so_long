@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:21:12 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/16 12:00:16 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:47:41 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void	handle_movement_y(t_data *data, int new)
 	char	c;
 	char	d;
 
-	if (data->map.map[new][data->pos.x] == 'E' && data->map.c > 0)
-		return ;
+	if (data->map.c == 0)
+		end_game(data, new, data->pos.x);
 	if (data->map.map[new][data->pos.x] != '1')
 	{
 		if (data->map.map[new][data->pos.x] == 'C')
 			data->map.c -= 1;
-		if (data->map.map[new][data->pos.x] == 'E')
-			end_game(data);
 		data->map.map[data->pos.y][data->pos.x] = '0';
 		data->map.map[new][data->pos.x] = 'P';
 		c = data->map.map[data->pos.y][data->pos.x];
@@ -47,14 +45,12 @@ void	handle_movement_x(t_data *data, int new)
 	char	c;
 	char	d;
 
-	if (data->map.map[data->pos.y][new] == 'E' && data->map.c > 0)
-		return ;
+	if (data->map.c == 0)
+		end_game(data, data->pos.y, new);
 	if (data->map.map[data->pos.y][new] != '1')
 	{
 		if (data->map.map[data->pos.y][new] == 'C')
 			data->map.c -= 1;
-		if (data->map.map[data->pos.y][new] == 'E')
-			end_game(data);
 		data->map.map[data->pos.y][data->pos.x] = '0';
 		data->map.map[data->pos.y][new] = 'P';
 		c = data->map.map[data->pos.y][data->pos.x];

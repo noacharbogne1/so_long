@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:44:41 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 17:07:06 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:48:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	init_data(t_data *data)
 	data->map.c = 0;
 	data->map.p = 0;
 	data->map.e = 0;
+	data->map.x_e = 0;
+	data->map.y_e = 0;
 }
 
 void	init_imgs(t_data *data)

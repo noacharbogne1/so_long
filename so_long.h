@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:56:05 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/13 16:43:53 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:45:52 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_map
 	int		c;
 	int		p;
 	int		e;
+	int		y_e;
+	int		x_e;
 	int		width;
 	int		height;
 }	t_map;
@@ -73,6 +75,7 @@ int		check_map(t_data *data);
 // parsing2.c
 int		check_argv(char *str);
 void	ft_free_map(char **tab);
+void	get_pos_e(t_data *data);
 
 // create_structs.c
 t_buff	*create_list(void);
@@ -103,6 +106,6 @@ void	handle_movement_x(t_data *data, int new);
 void	print_moves(t_data *data);
 
 // end_game.c
-void	end_game(t_data *data);
+void	end_game(t_data *data, int y, int x);
 
 #endif

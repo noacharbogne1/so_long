@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:01:27 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/09 17:10:55 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:58:04 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,29 @@ void	ft_free_map(char **tab)
 	while (i--)
 		free(tab[i]);
 	free(tab);
+}
+
+void	get_pos_e(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (data->map.map[j])
+	{
+		while(data->map.map[j][i])
+		{
+			if (data->map.map[j][i] == 'E')
+			{
+				data->map.y_e = j;
+				data->map.x_e = i;
+				data->map.map[j][i] = '0';
+				return ;
+			}
+			i++;
+		}
+		j++;
+		i = 0;
+	}
 }
