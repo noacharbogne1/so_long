@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:21:12 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/13 16:43:46 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:00:16 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	handle_movement_y(t_data *data, int new)
 
 	if (data->map.map[new][data->pos.x] == 'E' && data->map.c > 0)
 		return ;
-	if (data->map.map[new][data->pos.x] != '1'
-		&& (data->map.map[new][data->pos.x] != 'E' && data->map.c > 0))
+	if (data->map.map[new][data->pos.x] != '1')
 	{
 		if (data->map.map[new][data->pos.x] == 'C')
 			data->map.c -= 1;
