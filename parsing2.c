@@ -6,7 +6,7 @@
 /*   By: ncharbog <ncharbog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:01:27 by ncharbog          #+#    #+#             */
-/*   Updated: 2024/12/16 17:58:04 by ncharbog         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:24:24 by ncharbog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	get_pos_e(t_data *data)
 	j = 0;
 	while (data->map.map[j])
 	{
-		while(data->map.map[j][i])
+		while (data->map.map[j][i])
 		{
 			if (data->map.map[j][i] == 'E')
 			{
